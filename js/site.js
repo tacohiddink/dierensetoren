@@ -74,3 +74,52 @@
   tl.classList.add('is-ready');
   show(0);
 })();
+
+// Vergrote foto's in de galerij
+(function () {
+  var links = document.querySelectorAll('a[data-lightbox]');
+  if (!links.length || typeof HTMLDialogElement !== 'function') return;
+  var icon = function (d) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + d + '"/></svg>';
+  };
+  var dlg = document.createElement('dialog');
+  dlg.className = 'lightbox';
+  dlg.setAttribute('aria-label', 'Vergrote foto');
+  dlg.innerHTML =
+    '<figure><img alt=""><figcaption></figcaption></figure>' +
+    '<button class="lb-close" type="button" aria-label="Sluiten">' + icon('M18 6 6 18M6 6l12 12') + '</button>' +
+    '<button class="lb-prev" type="button" aria-label="Vorige foto">' + icon('m15 18-6-6 6-6') + '</button>' +
+    '<button class="lb-next" type="button" aria-label="Volgende foto">' + icon('m9 18 6-6-6-6') + '</button>';
+  document.body.appendChild(dlg);
+  var img = dlg.querySelector('img');
+  var cap = dlg.querySelector('figcaption');
+  var current = 0;
+
+  function show(i) {
+    current = (i + links.length) % links.length;
+    var thumb = links[current].querySelector('img');
+    img.src = links[current].getAttribute('href');
+    img.alt = thumb.alt;
+    cap.textContent = thumb.alt + ' (' + (current + 1) + ' / ' + links.length + ')';
+  }
+
+  links.forEach(function (a, n) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      show(n);
+      dlg.showModal();
+    });
+  });
+  dlg.querySelector('.lb-close').addEventListener('click', function () { dlg.close(); });
+  dlg.querySelector('.lb-prev').addEventListener('click', function () { show(current - 1); });
+  dlg.querySelector('.lb-next').addEventListener('click', function () { show(current + 1); });
+  // Klik naast de foto sluit
+  dlg.addEventListener('click', function (e) {
+    if (e.target === dlg || e.target.tagName === 'FIGURE') dlg.close();
+  });
+  dlg.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+  dlg.addEventListener('close', function () { links[current].focus(); });
+})();

@@ -203,6 +203,31 @@ figcaption { font-size: .88rem; color: var(--ink-soft); margin-top: 8px; }
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
 .gallery figure { margin: 0; }
 .gallery img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; }
+.gallery a { display: block; border-radius: 10px; overflow: hidden; cursor: zoom-in; }
+.gallery a img { transition: transform .25s ease; }
+.gallery a:hover img { transform: scale(1.04); }
+.gallery a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+/* Vergrote foto */
+.lightbox { max-width: none; max-height: none; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; background: transparent; }
+.lightbox::backdrop { background: rgba(20, 18, 22, .9); }
+.lightbox[open] { display: flex; align-items: center; justify-content: center; }
+.lightbox figure { margin: 0; padding: 64px 72px 24px; display: flex; flex-direction: column; align-items: center; max-width: 100%; max-height: 100%; }
+.lightbox img { max-width: 100%; max-height: calc(100vh - 140px); width: auto; height: auto; border-radius: 6px; box-shadow: 0 12px 40px rgba(0, 0, 0, .5); }
+.lightbox figcaption { margin-top: 12px; color: rgba(255, 255, 255, .85); font-size: .95rem; text-align: center; }
+.lightbox button { position: absolute; display: grid; place-items: center; width: 48px; height: 48px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .12); color: var(--white); cursor: pointer; }
+.lightbox button:hover { background: rgba(255, 255, 255, .24); }
+.lightbox button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.lightbox button svg { width: 24px; height: 24px; }
+.lightbox .lb-close { top: 16px; right: 16px; }
+.lightbox .lb-prev { left: 16px; top: 50%; transform: translateY(-50%); }
+.lightbox .lb-next { right: 16px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 640px) {
+  .lightbox figure { padding: 64px 12px 88px; }
+  .lightbox .lb-prev, .lightbox .lb-next { top: auto; bottom: 20px; transform: none; }
+  .lightbox .lb-prev { left: calc(50% - 60px); }
+  .lightbox .lb-next { right: calc(50% - 60px); }
+}
 
 /* Embeds */
 .embed { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: #ddd; }
