@@ -89,6 +89,7 @@ p { margin: 0 0 1em; }
   transition: background .15s, color .15s, border-color .15s, transform .15s;
 }
 .btn:active { transform: translateY(1px); }
+.btn svg { flex: none; width: 20px; height: 20px; }
 .btn--primary, .nav a.btn--primary { background: var(--brick); color: var(--white); }
 .btn--primary:hover, .nav a.btn--primary:hover { background: var(--brick-dark); color: var(--white); }
 .btn--light { background: var(--white); color: var(--ink); }
