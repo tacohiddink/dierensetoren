@@ -41,6 +41,8 @@ function server(dir) {
 }
 
 async function laadVolledig(page) {
+  // Effecten die niet elke keer pixel-identiek renderen uitzetten, zodat alleen echte wijzigingen opvallen
+  await page.addStyleTag({ content: "*, *::before, *::after { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; transition: none !important; animation: none !important; caret-color: transparent !important; }" });
   // Alle foto's direct laden en de pagina doorscrollen, zodat het screenshot compleet is
   await page.evaluate(async () => {
     document.querySelectorAll('img[loading="lazy"]').forEach((i) => { i.loading = "eager"; });
@@ -98,7 +100,7 @@ for (const scherm of schermen) {
     for (const m of [...r, ...jsFouten.map((e) => `JavaScript-fout: ${e}`)]) fouten.push(`${p} (${scherm.naam}): ${m}`);
 
     const nieuwPng = path.join(uitDir, `${naam}-nieuw.png`);
-    await page.screenshot({ path: nieuwPng, fullPage: true });
+    await page.screenshot({ path: nieuwPng, fullPage: true, mask: [page.locator("video")] });
     await page.close();
 
     if (huidig) {
@@ -107,7 +109,7 @@ for (const scherm of schermen) {
       if (!res || res.status() === 404) { regels.push(`| ${p} | ${scherm.naam} | nieuwe pagina |`); await hp.close(); continue; }
       await laadVolledig(hp);
       const huidigPng = path.join(uitDir, `${naam}-huidig.png`);
-      await hp.screenshot({ path: huidigPng, fullPage: true });
+      await hp.screenshot({ path: huidigPng, fullPage: true, mask: [hp.locator("video")] });
       await hp.close();
       const v = vergelijk(PNG.sync.read(fs.readFileSync(huidigPng)), PNG.sync.read(fs.readFileSync(nieuwPng)));
       if (v.procent > 0.05) {
