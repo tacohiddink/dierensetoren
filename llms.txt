@@ -36,6 +36,7 @@
 - [ANBI-gegevens](https://dierensetoren.nl/anbistatus.html): bestuur (zeven leden, met foto), beleid, beloningsbeleid, activiteitenverslag 2025 en financiële verantwoording 2024–2025
 - [In memoriam Peter Breukink](https://dierensetoren.nl/inmemoriam.html): voorzitter van het Comité K12 en de stichting (1974–2023)
 - [English](https://dierensetoren.nl/en.html): korte Engelse pagina voor toeristen: bezoek, geschiedenis en steun
+- [Toegankelijkheid](https://dierensetoren.nl/toegankelijkheid.html): wat de website doet voor bezoekers met een beperking, bekende beperkingen en hoe u een probleem meldt
 - [Privacyverklaring](https://dierensetoren.nl/privacy.html): welke gegevens de stichting verwerkt; de website plaatst geen cookies
 
 ## Externe bronnen

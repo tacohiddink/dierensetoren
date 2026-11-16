@@ -35,6 +35,7 @@ Een fout gemaakt? Elke wijziging staat in de geschiedenis van GitHub en kan word
 | `anbistatus.html` | ANBI-gegevens: bestuur, verslag en cijfers |
 | `inmemoriam.html` | In memoriam Peter Breukink |
 | `privacy.html` | Privacyverklaring |
+| `toegankelijkheid.html` | Toegankelijkheidsverklaring |
 | `404.html` | Pagina voor links die niet bestaan |
 | `llms.txt` | Samenvatting voor AI-diensten zoals ChatGPT |
 | `sitemap.xml` | Lijst van pagina's voor zoekmachines |
