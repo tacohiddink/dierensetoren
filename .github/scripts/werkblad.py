@@ -129,7 +129,7 @@ p {{ margin: 0 0 2.5mm; }}
 
   <div class="lees">
     <div>
-      <p>Midden in Dieren, aan de Hogestraat, staat een hoge bakstenen toren met een spitse punt. Dat is de Dierense Toren. Hij werd gebouwd in 1924 en 1925, naast de katholieke kerk die daar al sinds 1895 stond. Architect Wolter te Riele maakte het ontwerp. Op 17 mei 1925 werd de toren ingewijd.</p>
+      <p>Midden in Dieren, aan de Hogestraat, staat een bakstenen toren van 48 meter hoog met een spitse punt. Dat is de Dierense Toren. Hij werd gebouwd in 1924 en 1925, naast de katholieke kerk die daar al sinds 1895 stond. Architect Wolter te Riele maakte het ontwerp. Op 17 mei 1925 werd de toren ingewijd.</p>
       <p>In de Tweede Wereldoorlog, in 1943, namen de Duitsers de klokken mee. In 1948 kwamen er drie nieuwe klokken. Die luiden nog steeds, elke zaterdag om 18.00 uur.</p>
       <p>In de jaren zeventig werd de kerk afgebroken. Ook de toren dreigde te verdwijnen. Maar veel mensen in Dieren wilden hun toren houden. Een groep inwoners, het Comit&eacute; K12, kwam in actie, en dat lukte: de toren bleef staan. In 1987 was hij helemaal opgeknapt. Er kwamen kantoren en een vergaderruimte in, en boven bij de klokken een uitkijkpunt.</p>
       <p>Nu is de toren een monument. Vrijwilligers zorgen ervoor dat hij mooi blijft. In 2025 bestond hij 100 jaar.</p>
