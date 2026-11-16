@@ -26,7 +26,7 @@ Een fout gemaakt? Elke wijziging staat in de geschiedenis van GitHub en kan word
 | Bestand | Pagina |
 |---|---|
 | `index.html` | Startpagina, met de veelgestelde vragen |
-| `geschiedenis.html` | Geschiedenis: video, tijdlijn, foto's, oproep, architect, "In het kort" |
+| `geschiedenis.html` | Geschiedenis: video, tijdlijn, foto's, oproep, architect, tekening van de toren, "In het kort" |
 | `activiteiten.html` | Activiteiten en tradities, met Open Monumentendag |
 | `bereikbaarheid.html` | Bezoek en contact |
 | `donateur.html` | Donateur worden en bedrijfsvrienden |
