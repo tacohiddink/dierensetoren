@@ -159,6 +159,7 @@ a.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-co
 .prose figure img { border-radius: var(--radius); width: 100%; }
 .prose .eyebrow { color: var(--brick); }
 .prose .mt-0 { margin-top: 0; }
+.updated { margin: 0 0 48px; font-size: .88rem; color: var(--ink-soft); }
 .portrait { margin: 0; text-align: center; }
 .split .portrait img { width: auto; max-height: 520px; margin: 0 auto; object-fit: contain; }
 .portrait figcaption { margin-top: 10px; font-size: .9rem; color: var(--ink-soft); }
@@ -294,6 +295,7 @@ dl.defs dd { margin: 0; color: #2c3036; }
 @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
 
 .mt-0 { margin-top: 0; }
+.updated { margin: 0 0 48px; font-size: .88rem; color: var(--ink-soft); }
 .mt-2 { margin-top: 2rem; }
 .center { text-align: center; }
 
