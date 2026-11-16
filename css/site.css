@@ -276,6 +276,7 @@ dl.defs dd { margin: 0; color: #2c3036; }
 .faq details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
 .faq summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 10px; }
 .faq details p { margin: 0; padding: 0 20px 18px; color: var(--ink-soft); }
+.faq .video-text { margin: 0; padding: 0 20px 18px 40px; color: var(--ink-soft); display: grid; gap: 6px; }
 
 /* CTA band */
 .cta { background: var(--brick) url("../img/web/toren-avond.jpg?v=dev") right center / cover no-repeat; color: var(--white); position: relative; }
