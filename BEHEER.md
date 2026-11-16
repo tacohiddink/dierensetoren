@@ -85,6 +85,21 @@ rm brochure.html qr-brochure.png
 
 Controleer de PDF daarna even op de pagina-indeling, en pas zo nodig het aantal pagina's en de bestandsgrootte aan in de downloadlink op `geschiedenis.html`.
 
+## Werkblad voor scholen (PDF) bijwerken
+
+Het werkblad `downloads/werkblad-dierense-toren.pdf` (groep 6–8, 4 pagina's met antwoorden) wordt gemaakt met `.github/scripts/werkblad.py`. De teksten en vragen staan in dat script; de tekening van de toren komt uit `geschiedenis.html`. Maak het werkblad zo opnieuw (Mac met Google Chrome):
+
+```sh
+python3 .github/scripts/werkblad.py
+python3 -m http.server 8765 &
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+  --no-pdf-header-footer --print-to-pdf=downloads/werkblad-dierense-toren.pdf \
+  http://localhost:8765/werkblad.html
+kill %1; rm werkblad.html
+```
+
+Controleer daarna of het werkblad nog op 4 pagina's past.
+
 ## Foto's toevoegen
 
 - Maak de foto eerst kleiner: maximaal ongeveer 1200 pixels breed, als JPG, liefst onder de 400 KB.
