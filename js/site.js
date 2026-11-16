@@ -123,3 +123,20 @@
   });
   dlg.addEventListener('close', function () { links[current].focus(); });
 })();
+
+// Google Maps pas laden na toestemming (klik)
+(function () {
+  var box = document.querySelector('.map-consent');
+  if (!box) return;
+  box.querySelector('button').addEventListener('click', function () {
+    var frame = document.createElement('iframe');
+    frame.src = box.getAttribute('data-map-src');
+    frame.title = box.getAttribute('data-map-title');
+    frame.height = 460;
+    frame.setAttribute('allowfullscreen', '');
+    box.innerHTML = '';
+    box.appendChild(frame);
+    box.classList.add('is-loaded');
+    frame.focus();
+  });
+})();

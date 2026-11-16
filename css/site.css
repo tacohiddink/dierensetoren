@@ -238,6 +238,13 @@ figcaption { font-size: .88rem; color: var(--ink-soft); margin-top: 8px; }
 /* Embeds */
 .embed { position: relative; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: #ddd; }
 .embed iframe { width: 100%; border: 0; }
+.map-consent { min-height: 460px; display: grid; place-items: center; background: var(--cream); }
+.map-consent__body { max-width: 34ch; padding: 32px 24px; text-align: center; display: grid; justify-items: center; gap: 14px; }
+.map-consent__body svg { width: 36px; height: 36px; color: var(--brick); }
+.map-consent__body p { margin: 0; color: var(--ink-soft); font-size: .95rem; }
+.map-consent__body strong { color: var(--ink); }
+.map-consent__body a { font-size: .95rem; }
+.map-consent.is-loaded { display: block; min-height: 0; }
 .video { border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); background: #000; }
 .video video { width: 100%; height: auto; }
 
