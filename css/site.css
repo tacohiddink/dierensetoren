@@ -312,3 +312,36 @@ dl.defs dd { margin: 0; color: #2c3036; }
   .hero__bg img { object-position: 30% 40%; }
   .cta { background-image: image-set(url("../img/web/toren-avond-600.avif?v=dev") type("image/avif"), url("../img/web/toren-avond-600.jpg?v=dev") type("image/jpeg")); }
 }
+
+/* Tekening van de toren met genummerde onderdelen (geschiedenis) */
+.toren-opbouw { display: grid; grid-template-columns: minmax(0, 320px) 1fr; gap: 56px; align-items: start; }
+.toren-opbouw figure { margin: 0; }
+.toren-opbouw figcaption { margin-top: 8px; font-size: .85rem; color: var(--ink-soft); text-align: center; }
+.toren-tekening { display: block; width: 100%; height: auto; max-height: calc(100vh - 150px); }
+.toren-tekening .t-grond { stroke: var(--line); stroke-width: 3; }
+.toren-tekening .t-steen { fill: #a5583c; }
+.toren-tekening .t-beer { fill: #8f4a31; }
+.toren-tekening .t-band, .toren-tekening .t-lijst { fill: #7a3a25; }
+.toren-tekening .t-open { fill: #2b2a2e; }
+.toren-tekening .t-nis { fill: #8f4a31; }
+.toren-tekening .t-lijn { stroke: #a5583c; stroke-width: 2; fill: none; }
+.toren-tekening .t-galm { stroke: #6b6157; stroke-width: 2.5; }
+.toren-tekening .t-klok { fill: #2b2a2e; stroke: var(--gold); stroke-width: 2.5; }
+.toren-tekening .t-wijzer { stroke: var(--gold); stroke-width: 2; stroke-linecap: round; fill: none; }
+.toren-tekening .t-lei { fill: #565b63; }
+.toren-tekening .t-lei-licht { fill: #6d727a; }
+.toren-tekening .t-ijzer { stroke: #2b2a2e; stroke-width: 2.5; fill: none; }
+.toren-tekening .t-goud { fill: var(--gold); }
+.toren-tekening .t-wijs { stroke: var(--ink-soft); stroke-width: 1; stroke-dasharray: 3 3; fill: none; }
+.toren-tekening .t-punt { fill: var(--ink); }
+.toren-tekening .t-nr circle { fill: var(--brick); }
+.toren-tekening .t-nr text { fill: #fff; font: 600 14px var(--sans); }
+.toren-delen { list-style: none; counter-reset: deel; margin: 0; padding: 0; display: grid; gap: 22px; }
+.toren-delen li { counter-increment: deel; position: relative; padding-left: 48px; }
+.toren-delen li::before { content: counter(deel); position: absolute; left: 0; top: -2px; width: 32px; height: 32px; border-radius: 50%; background: var(--brick); color: #fff; font-weight: 600; display: grid; place-items: center; }
+.toren-delen h3 { margin: 0 0 .3rem; font-size: 1.15rem; }
+.toren-delen p { margin: 0; color: var(--ink-soft); }
+@media (max-width: 860px) {
+  .toren-opbouw { grid-template-columns: 1fr; gap: 32px; }
+  .toren-opbouw figure { max-width: 260px; margin: 0 auto; }
+}
