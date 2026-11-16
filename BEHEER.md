@@ -31,6 +31,7 @@ Een fout gemaakt? Elke wijziging staat in de geschiedenis van GitHub en kan word
 | `bereikbaarheid.html` | Bezoek en contact |
 | `donateur.html` | Donateur worden en bedrijfsvrienden |
 | `nalaten.html` | Nalaten aan de toren |
+| `verhuur.html` | Ruimte huren (nu verhuurd aan De Nieuwe Yogi) |
 | `anbistatus.html` | ANBI-gegevens: bestuur, verslag en cijfers |
 | `inmemoriam.html` | In memoriam Peter Breukink |
 | `privacy.html` | Privacyverklaring |
