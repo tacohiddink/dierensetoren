@@ -31,7 +31,7 @@ jobs:
           mkdir _site
           rsync -a \
             --exclude .git --exclude .github --exclude .idea \
-            --exclude .gitignore --exclude README.md --exclude _config.yml \
+            --exclude .gitignore --exclude README.md --exclude BEHEER.md --exclude _config.yml \
             --exclude _site \
             ./ _site/
           sed -i "s/?v=dev/?v=${GITHUB_SHA::7}/g" _site/*.html _site/css/*.css
