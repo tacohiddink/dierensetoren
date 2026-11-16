@@ -47,6 +47,7 @@ p { margin: 0 0 1em; }
 .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 20px; }
 .narrow { max-width: 760px; }
 .section { padding: 64px 0; }
+.pb-0 { padding-bottom: 0; } /* sluit aan op een volgende sectie met dezelfde achtergrond */
 .section--cream { background: var(--cream); }
 section[id] { scroll-margin-top: 68px; } /* onder de vaste header */
 .skip { position: absolute; left: -9999px; }
