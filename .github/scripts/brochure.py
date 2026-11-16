@@ -109,7 +109,7 @@ dd {{ margin: 0; color: #2c3036; }}
 <section class="inleiding">
   <p class="eyebrow">Inleiding</p>
   <h2>Een toren die het dorp niet wilde missen</h2>
-  <p class="lead">De Dierense Toren werd in 1925 gebouwd bij de rooms-katholieke kerk aan de Hogestraat. Toen de kerk in 1976 werd gesloopt, bleef de toren staan dankzij de inzet van de Dierense bevolking. Sinds 1987 is hij gerestaureerd en herbestemd, en nog altijd bepaalt hij het silhouet van Dieren.</p>
+  <p class="lead">De Dierense Toren werd in 1925 gebouwd bij de rooms-katholieke kerk aan de Hogestraat. Toen de kerk in 1977 werd gesloopt, bleef de toren staan dankzij de inzet van de Dierense bevolking. Sinds 1987 is hij gerestaureerd en herbestemd, en nog altijd bepaalt hij het silhouet van Dieren.</p>
   <h3>In het kort</h3>
   <dl>{facts}</dl>
 </section>
