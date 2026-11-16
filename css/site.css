@@ -157,6 +157,11 @@ a.card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-co
 .prose blockquote { margin: 1.5em 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--gold); font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--ink); }
 .prose figure { margin: 2em 0; }
 .prose figure img { border-radius: var(--radius); width: 100%; }
+.prose .eyebrow { color: var(--brick); }
+.prose .mt-0 { margin-top: 0; }
+.portrait { margin: 0; text-align: center; }
+.split .portrait img { width: auto; max-height: 520px; margin: 0 auto; object-fit: contain; }
+.portrait figcaption { margin-top: 10px; font-size: .9rem; color: var(--ink-soft); }
 figcaption { font-size: .88rem; color: var(--ink-soft); margin-top: 8px; }
 
 /* Info list */
