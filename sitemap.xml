@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://dierensetoren.nl/</loc><lastmod>2026-11-16</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://dierensetoren.nl/</loc><lastmod>2026-11-16</lastmod><xhtml:link rel="alternate" hreflang="nl" href="https://dierensetoren.nl/"/><xhtml:link rel="alternate" hreflang="en" href="https://dierensetoren.nl/en.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://dierensetoren.nl/"/></url>
   <url><loc>https://dierensetoren.nl/geschiedenis.html</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://dierensetoren.nl/activiteiten.html</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://dierensetoren.nl/bereikbaarheid.html</loc><lastmod>2026-11-16</lastmod></url>
@@ -9,5 +9,5 @@
   <url><loc>https://dierensetoren.nl/anbistatus.html</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://dierensetoren.nl/inmemoriam.html</loc><lastmod>2026-11-16</lastmod></url>
   <url><loc>https://dierensetoren.nl/privacy.html</loc><lastmod>2026-11-16</lastmod></url>
-  <url><loc>https://dierensetoren.nl/en.html</loc><lastmod>2026-11-16</lastmod></url>
+  <url><loc>https://dierensetoren.nl/en.html</loc><lastmod>2026-11-16</lastmod><xhtml:link rel="alternate" hreflang="nl" href="https://dierensetoren.nl/"/><xhtml:link rel="alternate" hreflang="en" href="https://dierensetoren.nl/en.html"/><xhtml:link rel="alternate" hreflang="x-default" href="https://dierensetoren.nl/"/></url>
 </urlset>

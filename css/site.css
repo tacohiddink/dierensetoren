@@ -34,6 +34,7 @@ body {
 }
 img, video, iframe { max-width: 100%; display: block; }
 img { height: auto; }
+picture:not(.hero__bg) { display: contents; } /* <picture> rond foto's verandert de opmaak niet */
 a { color: var(--brick); text-underline-offset: 3px; }
 a:hover { color: var(--brick-dark); }
 h1, h2, h3 { font-family: var(--serif); line-height: 1.15; font-weight: 600; letter-spacing: -.01em; margin: 0 0 .5em; }
@@ -282,7 +283,7 @@ dl.defs dd { margin: 0; color: #2c3036; }
 .faq .video-text { margin: 0; padding: 0 20px 18px 40px; color: var(--ink-soft); display: grid; gap: 6px; }
 
 /* CTA band */
-.cta { background: var(--brick) url("../img/web/toren-avond.jpg?v=dev") right center / cover no-repeat; color: var(--white); position: relative; }
+.cta { background: var(--brick) url("../img/web/toren-avond.jpg?v=dev") right center / cover no-repeat; background-image: image-set(url("../img/web/toren-avond.avif?v=dev") type("image/avif"), url("../img/web/toren-avond.jpg?v=dev") type("image/jpeg")); color: var(--white); position: relative; }
 .cta::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(122, 44, 24, .97) 0%, rgba(122, 44, 24, .9) 50%, rgba(122, 44, 24, .55) 100%); }
 .cta .wrap { position: relative; }
 .cta h2 { color: var(--white); }
@@ -305,4 +306,7 @@ dl.defs dd { margin: 0; color: #2c3036; }
 .center { text-align: center; }
 
 .hero h1, .hero p, .hero .eyebrow { text-shadow: 0 1px 12px rgba(0, 0, 0, .45); }
-@media (max-width: 640px) { .hero__bg img { object-position: 30% 40%; } }
+@media (max-width: 640px) {
+  .hero__bg img { object-position: 30% 40%; }
+  .cta { background-image: image-set(url("../img/web/toren-avond-600.avif?v=dev") type("image/avif"), url("../img/web/toren-avond-600.jpg?v=dev") type("image/jpeg")); }
+}
