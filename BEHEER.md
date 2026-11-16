@@ -17,6 +17,8 @@ Deze handleiding is voor het bestuur en vrijwilligers van Stichting De Dierense 
 5. Klik op **Create pull request**. Laat iemand anders er eventueel nog naar kijken.
 6. Klik op **Merge pull request**. Na ongeveer een minuut staat de wijziging live.
 
+Bij elke pull request draait automatisch een **controle** (onderaan de pull request, bij "Checks"). Die zoekt naar kapotte links, ontbrekende afbeeldingen, foto's zonder beschrijving of afmetingen, externe links die niet in een nieuw tabblad openen en fouten in de structured data, en draait Lighthouse op alle pagina's. Staat er een rood kruisje, klik dan op **Details** om te zien wat er mis is, en merge pas als de controle groen is.
+
 Een fout gemaakt? Elke wijziging staat in de geschiedenis van GitHub en kan worden teruggedraaid (knop **Revert** bij de gemergde pull request).
 
 ## Overzicht van de pagina's

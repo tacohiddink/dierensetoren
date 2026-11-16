@@ -72,3 +72,8 @@ fabric.properties
 
 # macOS
 .DS_Store
+
+# Lokale bouw- en controle-uitvoer
+_site/
+lighthouse-rapporten/
+.lighthouseci/

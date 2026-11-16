@@ -1,0 +1,42 @@
+# Controleert elke pull request voordat hij live gaat: kapotte links, ontbrekende
+# afbeeldingen, structured data en Lighthouse-scores. Zie .github/scripts/controle.py
+# en lighthouserc.json.
+name: Controle
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  links-en-bestanden:
+    name: Links en bestanden
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Site samenstellen
+        run: .github/scripts/bouw.sh controle
+      - name: Links, afbeeldingen en structured data controleren
+        run: python3 .github/scripts/controle.py _site
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Site samenstellen
+        run: .github/scripts/bouw.sh controle
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Lighthouse draaien
+        run: npx --yes @lhci/cli@0.15.1 autorun
+      - name: Rapporten bewaren
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-rapporten
+          path: lighthouse-rapporten
+          if-no-files-found: ignore
