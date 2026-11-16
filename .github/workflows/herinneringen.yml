@@ -1,0 +1,57 @@
+# Maakt elk jaar een melding (issue) aan om de site actueel te houden.
+# Zie BEHEER.md, onder "Elk jaar bijwerken".
+name: Jaarlijkse herinneringen
+
+on:
+  schedule:
+    - cron: "0 8 15 1 *" # 15 januari: ANBI-verslag en cijfers
+    - cron: "0 8 1 6 *"  # 1 juni: Open Monumentendag
+  workflow_dispatch:
+    inputs:
+      onderwerp:
+        description: "Welke herinnering"
+        type: choice
+        options: [anbi, monumentendag]
+        default: monumentendag
+
+permissions:
+  issues: write
+
+jobs:
+  herinnering:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Melding aanmaken
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          SCHEMA: ${{ github.event.schedule }}
+          ONDERWERP: ${{ inputs.onderwerp }}
+        run: |
+          jaar=$(date +%Y)
+          if [ "$SCHEMA" = "0 8 15 1 *" ] || [ "$ONDERWERP" = "anbi" ]; then
+            titel="ANBI-verslag en financiële cijfers bijwerken ($jaar)"
+            body=$(printf '%s\n' \
+              "Een culturele ANBI moet het activiteitenverslag en de financiële cijfers actueel op de website hebben." \
+              "" \
+              "- [ ] \`anbistatus.html\`: verslag van de activiteiten over $((jaar - 1))" \
+              "- [ ] \`anbistatus.html\`: financiële verantwoording, nieuwe kolom $((jaar - 1))" \
+              "- [ ] \`anbistatus.html\`: lijst met bestuursleden controleren" \
+              "- [ ] \"Laatst bijgewerkt\" en \`dateModified\` op de ANBI-pagina" \
+              "- [ ] \"Laatst bijgewerkt\" onderaan \`llms.txt\`" \
+              "" \
+              "Zie [BEHEER.md](../blob/master/BEHEER.md#anbi-verslag-en-financiële-cijfers-begin-van-het-jaar).")
+          else
+            titel="Open Monumentendag $jaar op de website zetten"
+            body=$(printf '%s\n' \
+              "Zet de datum en openingstijden van Open Monumentendag $jaar op de website, zodra die bekend zijn." \
+              "" \
+              "- [ ] \`activiteiten.html\`: de zin met datum en tijden" \
+              "- [ ] \`activiteiten.html\`: \`name\`, \`startDate\` en \`endDate\` in de structured data" \
+              "- [ ] \`index.html\`: antwoord op \"Kan ik de Dierense Toren beklimmen?\" (tekst en structured data)" \
+              "- [ ] \`llms.txt\`: de regel \"Bezoek:\"" \
+              "- [ ] \"Laatst bijgewerkt\" en \`dateModified\` op de activiteitenpagina" \
+              "" \
+              "Zie [BEHEER.md](../blob/master/BEHEER.md#open-monumentendag-voor-de-zomer).")
+          fi
+          gh issue create --title "$titel" --body "$body"
