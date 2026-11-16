@@ -71,6 +71,20 @@ Na een inhoudelijke wijziging op de ANBI- of activiteitenpagina pas je de datum 
 - bovenaan de pagina bij `"dateModified": "2026-11-16"`;
 - onderaan `llms.txt`: "Laatst bijgewerkt: …".
 
+## Brochure (PDF) bijwerken
+
+De brochure `downloads/geschiedenis-dierense-toren.pdf` wordt gemaakt uit de inhoud van `geschiedenis.html` (tijdlijn, architect en "In het kort"). Maak hem opnieuw als die pagina inhoudelijk verandert. Je hebt een Mac met Google Chrome nodig:
+
+```sh
+python3 .github/scripts/brochure.py
+# QR-code naar de geschiedenispagina, als qr-brochure.png naast brochure.html
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+  --no-pdf-header-footer --print-to-pdf=downloads/geschiedenis-dierense-toren.pdf brochure.html
+rm brochure.html qr-brochure.png
+```
+
+Controleer de PDF daarna even op de pagina-indeling, en pas zo nodig het aantal pagina's en de bestandsgrootte aan in de downloadlink op `geschiedenis.html`.
+
 ## Foto's toevoegen
 
 - Maak de foto eerst kleiner: maximaal ongeveer 1200 pixels breed, als JPG, liefst onder de 400 KB.
