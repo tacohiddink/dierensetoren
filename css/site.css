@@ -162,16 +162,6 @@ figcaption { font-size: .88rem; color: var(--ink-soft); margin-top: 8px; }
 .panel--accent h2, .panel--accent h3 { color: var(--white); }
 .panel--accent p { color: rgba(255, 255, 255, .9); }
 
-/* Timeline */
-.timeline { list-style: none; margin: 0; padding: 0; position: relative; }
-.timeline::before { content: ""; position: absolute; left: 11px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
-.timeline li { position: relative; padding: 0 0 36px 44px; }
-.timeline li::before { content: ""; position: absolute; left: 4px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); border: 3px solid var(--brick); }
-.timeline .year { font-family: var(--serif); font-size: 1.5rem; font-weight: 600; color: var(--brick); line-height: 1.2; }
-.timeline h3 { margin: 2px 0 6px; font-family: var(--sans); font-size: 1.1rem; font-weight: 600; }
-.timeline p { color: var(--ink-soft); margin: 0; }
-.timeline img { margin-top: 14px; border-radius: 10px; max-height: 320px; width: auto; box-shadow: var(--shadow); }
-
 /* Bladerbare tijdlijn */
 .tl { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
 .tl-years { list-style: none; margin: 0; padding: 12px; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: thin; border-bottom: 1px solid var(--line); background: var(--cream); }
@@ -188,6 +178,7 @@ figcaption { font-size: .88rem; color: var(--ink-soft); margin-top: 8px; }
 .tl-slide .year { font-family: var(--serif); font-size: 1.6rem; font-weight: 600; color: var(--brick); line-height: 1.2; }
 .tl-slide h3 { margin: 4px 0 10px; }
 .tl-slide p { color: var(--ink-soft); margin: 0; }
+.tl-slide > div:only-child { grid-column: 1 / -1; max-width: 68ch; }
 .tl-controls { order: 1; display: flex; align-items: center; justify-content: center; gap: 16px; padding: 16px 32px 0; }
 .tl-controls button { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--brick); background: var(--white); color: var(--brick); cursor: pointer; }
 .tl-controls button:hover:not(:disabled) { background: var(--brick); color: var(--white); }
@@ -253,6 +244,16 @@ dl.defs dd { margin: 0; color: #2c3036; }
 .people { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
 .people li { background: var(--white); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; }
 .people span { display: block; font-size: .88rem; color: var(--ink-soft); }
+
+/* Veelgestelde vragen */
+.faq { display: grid; gap: 10px; }
+.faq details { background: var(--white); border: 1px solid var(--line); border-radius: 10px; }
+.faq summary { cursor: pointer; list-style: none; padding: 16px 52px 16px 20px; position: relative; font-weight: 600; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: ""; position: absolute; right: 22px; top: 50%; width: 9px; height: 9px; border-right: 2px solid var(--brick); border-bottom: 2px solid var(--brick); transform: translateY(-70%) rotate(45deg); transition: transform .2s; }
+.faq details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+.faq summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 10px; }
+.faq details p { margin: 0; padding: 0 20px 18px; color: var(--ink-soft); }
 
 /* CTA band */
 .cta { background: var(--brick) url("../img/web/toren-avond.jpg?v=dev") right center / cover no-repeat; color: var(--white); position: relative; }
