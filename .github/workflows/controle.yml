@@ -1,6 +1,6 @@
 # Controleert elke pull request voordat hij live gaat: kapotte links, ontbrekende
-# afbeeldingen, structured data en Lighthouse-scores. Zie .github/scripts/controle.py
-# en lighthouserc.json.
+# afbeeldingen, structured data, Lighthouse-scores en de opmaak op desktop en mobiel.
+# Zie .github/scripts/controle.py, lighthouserc.json en .github/scripts/opmaak.mjs.
 name: Controle
 
 on:
@@ -39,4 +39,40 @@ jobs:
         with:
           name: lighthouse-rapporten
           path: lighthouse-rapporten
+          if-no-files-found: ignore
+
+  opmaak:
+    name: Opmaak
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Nieuwe versie samenstellen
+        run: .github/scripts/bouw.sh controle
+      - name: Huidige versie samenstellen (ter vergelijking)
+        run: |
+          basis="${{ github.base_ref || 'master' }}"
+          git worktree add "$RUNNER_TEMP/huidig" "origin/$basis"
+          if [ -x "$RUNNER_TEMP/huidig/.github/scripts/bouw.sh" ]; then
+            (cd "$RUNNER_TEMP/huidig" && .github/scripts/bouw.sh controle)
+            echo "HUIDIG=$RUNNER_TEMP/huidig/_site" >> "$GITHUB_ENV"
+          else
+            echo "HUIDIG=-" >> "$GITHUB_ENV"
+          fi
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Playwright installeren
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.48.2 pixelmatch@6.0.0 pngjs@7.0.0
+          npx playwright install --with-deps chromium
+      - name: Opmaak controleren en screenshots vergelijken
+        run: node .github/scripts/opmaak.mjs _site "$HUIDIG" opmaak-screenshots
+      - name: Screenshots bewaren
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: opmaak-screenshots
+          path: opmaak-screenshots
           if-no-files-found: ignore

@@ -10,7 +10,7 @@ mkdir _site
 rsync -a \
   --exclude .git --exclude .github --exclude .idea \
   --exclude .gitignore --exclude README.md --exclude BEHEER.md --exclude _config.yml \
-  --exclude lighthouserc.json --exclude _site \
+  --exclude lighthouserc.json --exclude _site --exclude node_modules --exclude opmaak-screenshots \
   ./ _site/
 sed -i.bak "s/?v=dev/?v=${versie}/g" _site/*.html _site/css/*.css
 rm -f _site/*.bak _site/css/*.bak
