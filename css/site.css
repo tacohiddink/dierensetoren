@@ -35,6 +35,7 @@ body {
 img, video, iframe { max-width: 100%; display: block; }
 img { height: auto; }
 picture:not(.hero__bg) { display: contents; } /* <picture> rond foto's verandert de opmaak niet */
+picture > source { display: none; } /* anders telt <source> als eigen vak in grids zoals .split */
 a { color: var(--brick); text-underline-offset: 3px; }
 a:hover { color: var(--brick-dark); }
 h1, h2, h3 { font-family: var(--serif); line-height: 1.15; font-weight: 600; letter-spacing: -.01em; margin: 0 0 .5em; }
