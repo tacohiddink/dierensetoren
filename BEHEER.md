@@ -44,13 +44,14 @@ Er komt elk jaar automatisch een herinnering (zie [Herinneringen](#herinneringen
 
 ### Open Monumentendag (voor de zomer)
 
-De datum en tijden staan op vijf plekken. Pas ze allemaal aan:
+De datum en tijden staan op zes plekken. Pas ze allemaal aan:
 
 1. `activiteiten.html`: de zin "Open Monumentendag 2027 is op zaterdag 11 en zondag 12 september. Op zondag is de toren geopend van 11.00 tot 17.00 uur."
 2. `activiteiten.html`, bovenaan tussen `<script type="application/ld+json">`: `"name"`, `"startDate"` en `"endDate"`. Gebruik de vorm `2027-09-12T11:00:00+02:00` (jaar-maand-dag, tijd, zomertijd).
 3. `index.html`: het antwoord op "Kan ik de Dierense Toren beklimmen?" in de veelgestelde vragen.
 4. `index.html`, bovenaan tussen `<script type="application/ld+json">`: dezelfde tekst bij `"Kan ik de Dierense Toren beklimmen?"`.
 5. `llms.txt`: de regel die begint met "Bezoek:".
+6. `downloads/open-monumentendag-dierense-toren.ics` (het agenda-item achter de knop "Zet in je agenda"): `UID` (jaartal), `DTSTART` en `DTEND` in de vorm `20270912T110000` (jaar-maand-dag, T, uur-minuut-seconde), en `DTSTAMP` (de datum van vandaag).
 
 Zet daarna de datum bij **Laatst bijgewerkt** goed (zie hieronder).
 
