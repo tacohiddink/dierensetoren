@@ -199,6 +199,10 @@
   <main id="main">
 
     <section class="hero">
+      <picture class="hero__bg">
+        <source type="image/avif" srcset="img/web/hero-800.avif?v=dev 800w, img/web/hero-1280.avif?v=dev 1280w, img/web/hero.avif?v=dev 2000w" sizes="100vw">
+        <img src="img/web/hero.jpg?v=dev" srcset="img/web/hero-800.jpg?v=dev 800w, img/web/hero-1280.jpg?v=dev 1280w, img/web/hero.jpg?v=dev 2000w" sizes="100vw" alt="" width="2000" height="1287" fetchpriority="high">
+      </picture>
       <div class="wrap">
         <p class="eyebrow">Monument in Dieren sinds 1925</p>
         <h1>Welkom bij de Dierense Toren</h1>
@@ -252,7 +256,7 @@
         <h2 class="center">De toren in beeld</h2>
         <p class="center">Dronebeelden uit 2020 van de Dierense Toren en het dorp Dieren, met uitzicht over de omgeving.</p>
         <div class="video mt-2">
-          <video controls muted playsinline preload="metadata" poster="img/web/hero.jpg?v=dev">
+          <video controls muted playsinline preload="metadata" poster="img/web/hero-1280.jpg?v=dev">
             <source src="videos/dierensetoren2020.mp4?v=dev" type="video/mp4">
             Uw browser kan deze video niet afspelen.
           </video>
