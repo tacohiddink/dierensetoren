@@ -296,6 +296,7 @@ dl.defs dd { margin: 0; color: #2c3036; }
 .site-footer h2 { color: var(--white); font-family: var(--serif); font-weight: 600; font-size: 1.1rem; line-height: 1.65; letter-spacing: 0; margin: 0 0 12px; }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .footer-bottom { margin-top: 40px; padding-top: 20px; border-top: 1px solid #383334; font-size: .85rem; color: #968e86; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.footer-bottom a { text-decoration: underline; text-underline-offset: 3px; }
 @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
 
 .mt-0 { margin-top: 0; }
