@@ -51,7 +51,7 @@ p { margin: 0 0 1em; }
 .section { padding: 64px 0; }
 .pb-0 { padding-bottom: 0; } /* sluit aan op een volgende sectie met dezelfde achtergrond */
 .section--cream { background: var(--cream); }
-section[id] { scroll-margin-top: 68px; } /* onder de vaste header */
+section[id], .panel[id] { scroll-margin-top: 68px; } /* onder de vaste header */
 .skip { position: absolute; left: -9999px; }
 .skip:focus { left: 16px; top: 16px; z-index: 100; background: var(--white); padding: 8px 12px; border-radius: 8px; }
 
