@@ -29,6 +29,7 @@ Een fout gemaakt? Elke wijziging staat in de geschiedenis van GitHub en kan word
 | `geschiedenis.html` | Geschiedenis: video, "In het kort", tijdlijn, tekening van de toren, architect, foto's, oproep |
 | `activiteiten.html` | Activiteiten & bezoek: Open Monumentendag, route, parkeren, contact en tradities |
 | `bereikbaarheid.html` | Doorverwijzing naar Activiteiten & bezoek (voor oude links) |
+| `nieuws.htm`, `main_nieuws.htm`, `main_riele.htm`, `main_beheren.htm`, `bunker_right.htm` | Doorverwijzingen van adressen van de oude website (tot 2019) |
 | `donateur.html` | Steun de toren: donateur, bedrijfsvriend en nalaten |
 | `stichting.html` | Over de stichting: wat we doen, hoe het begon, bestuur, in memoriam en contact |
 | `nalaten.html` | Nalaten aan de toren |
@@ -116,6 +117,7 @@ Controleer daarna of het werkblad nog op 4 pagina's past.
 - Maak de foto eerst kleiner: maximaal ongeveer 1200 pixels breed, als JPG, liefst onder de 400 KB.
 - Geef het bestand een beschrijvende naam in kleine letters met streepjes, bijvoorbeeld `kerstboom-2026.jpg`, en zet het in de map `img/web/`.
 - Zet in de HTML altijd een beschrijving (`alt="..."`) en de afmetingen (`width` en `height` in pixels) bij de foto.
+- Voor de fotogalerij op de geschiedenispagina is er van grote foto's ook een kleine versie van 480 pixels breed (`naam-480.jpg` en `naam-480.avif`), zodat de miniaturen snel laden.
 - Zet geen originele, grote bestanden in de repository.
 - Gebruik alleen foto's die je zelf hebt gemaakt of waarvoor je toestemming hebt.
 
