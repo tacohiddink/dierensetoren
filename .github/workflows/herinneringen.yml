@@ -51,6 +51,7 @@ jobs:
               "- [ ] \`index.html\`: antwoord op \"Kan ik de Dierense Toren beklimmen?\" (tekst en structured data)" \
               "- [ ] \`llms.txt\`: de regel \"Bezoek:\"" \
               "- [ ] \`downloads/open-monumentendag-dierense-toren.ics\`: \`UID\`, \`DTSTART\`, \`DTEND\` en \`DTSTAMP\`" \
+              "- [ ] \`en.html\`: de zin \"Heritage Day …\" (datum en tijden)" \
               "- [ ] \"Laatst bijgewerkt\" en \`dateModified\` op de activiteitenpagina" \
               "" \
               "Zie [BEHEER.md](../blob/master/BEHEER.md#open-monumentendag-voor-de-zomer).")
