@@ -1,6 +1,7 @@
 # Publiceert de site op GitHub Pages. Elke "?v=dev" in de HTML en CSS wordt
-# vervangen door de commit-hash, zodat browsers na een wijziging direct de
-# nieuwe CSS, JS en foto's ophalen in plaats van een oude versie uit de cache.
+# vervangen door een versienummer per bestand (uit de inhoud), zodat browsers
+# een gewijzigd bestand direct ophalen en ongewijzigde foto's uit de cache halen.
+# De volledige geschiedenis is nodig voor de lastmod-datums in sitemap.xml.
 name: Publiceer site
 
 on:
@@ -25,6 +26,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Site samenstellen met versienummer
         run: .github/scripts/bouw.sh "${GITHUB_SHA::7}"

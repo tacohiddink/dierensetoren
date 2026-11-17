@@ -7,6 +7,8 @@ Fouten (laten de controle falen):
 - externe links zonder target="_blank" rel="noopener"
 - ongeldige structured data (JSON-LD), sitemap of og:image
 - achtergebleven "?v=dev"
+- Open Monumentendag die voorbij is, of die niet overal hetzelfde jaar en dezelfde
+  datum heeft (pagina's, llms.txt, structured data en het agenda-item)
 
 Waarschuwingen (falen niet): externe links die niet bereikbaar lijken.
 
@@ -17,6 +19,7 @@ import re
 import sys
 import urllib.request
 import xml.etree.ElementTree as ET
+from datetime import date
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -151,6 +154,55 @@ if llms.exists():
         t = local_target(url, root / "index.html")
         if t is None or not t[0].exists():
             error("llms.txt", f"pagina bestaat niet: {url}")
+
+# Open Monumentendag: de datum mag niet voorbij zijn en moet overal hetzelfde jaar hebben
+act = root / "activiteiten.html"
+if act.exists():
+    event = None
+    for block in pages[act.resolve()].jsonld:
+        try:
+            ld = json.loads(block)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(ld, dict) and ld.get("@type") == "Event":
+            event = ld
+    if not event or "startDate" not in event:
+        error("activiteiten.html", "geen Event met startDate voor Open Monumentendag in de structured data")
+    else:
+        start = event["startDate"]
+        jaar = start[:4]
+        if start[:10] < date.today().isoformat():
+            error("activiteiten.html", f"Open Monumentendag ({start[:10]}) is voorbij: zet de nieuwe datum op alle plekken uit BEHEER.md")
+        for naam in ("index.html", "activiteiten.html", "en.html", "llms.txt"):
+            bestand = root / naam
+            if not bestand.exists():
+                continue
+            ruw = bestand.read_text(encoding="utf-8")
+            if naam.endswith(".txt"):
+                ruw = ruw.replace("\n", ". ")  # in llms.txt is elke regel een eigen zin
+            # descriptions tellen mee: die noemen het jaar soms ook
+            meta = " ".join(c + ". " for c in re.findall(r'<meta (?:name|property)="(?:og:)?description" content="([^"]*)"', ruw))
+            tekst = re.sub(r"<script.*?</script>", " ", ruw, flags=re.S)
+            tekst = re.sub(r"\s+", " ", meta + re.sub(r"<[^>]+>", " ", tekst))
+            gemeld = set()
+            # elk jaartal in de zin met "Monumentendag" of "Heritage Day" en in de zin erna
+            for m in re.finditer(r"Monumentendag|Heritage Day", tekst):
+                stuk = tekst[m.start():m.start() + 300]
+                einden = [e.end() for e in re.finditer(r"[.!?](\s|$)", stuk)]
+                if len(einden) >= 2:
+                    stuk = stuk[:einden[1]]
+                for j in re.findall(r"\b(20[2-9]\d)\b", stuk):
+                    if j != jaar and (j, stuk[:60]) not in gemeld:
+                        gemeld.add((j, stuk[:60]))
+                        error(naam, f"Open Monumentendag noemt {j}, maar de structured data noemt {jaar}: {stuk[:90]}")
+        ics = root / "downloads" / "open-monumentendag-dierense-toren.ics"
+        if ics.exists():
+            inhoud = ics.read_text(encoding="utf-8")
+            verwacht = start[:10].replace("-", "") + "T" + start[11:16].replace(":", "") + "00"
+            if f"DTSTART;TZID=Europe/Amsterdam:{verwacht}" not in inhoud:
+                error("downloads/open-monumentendag-dierense-toren.ics", f"DTSTART komt niet overeen met de structured data ({start})")
+            if f"open-monumentendag-{jaar}@" not in inhoud:
+                error("downloads/open-monumentendag-dierense-toren.ics", f"UID noemt niet het jaar {jaar}")
 
 # Externe links: alleen waarschuwen, want andere sites zijn soms tijdelijk onbereikbaar of weren robots
 for url, name in sorted(external.items()):

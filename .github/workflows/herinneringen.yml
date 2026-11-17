@@ -51,7 +51,7 @@ jobs:
               "- [ ] \`index.html\`: antwoord op \"Kan ik de Dierense Toren beklimmen?\" (tekst en structured data)" \
               "- [ ] \`llms.txt\`: de regel \"Bezoek:\"" \
               "- [ ] \`downloads/open-monumentendag-dierense-toren.ics\`: \`UID\`, \`DTSTART\`, \`DTEND\` en \`DTSTAMP\`" \
-              "- [ ] \`en.html\`: de zin \"Heritage Day …\" (datum en tijden)" \
+              "- [ ] \`en.html\`: de zin \"Heritage Day …\" (datum en tijden) en het jaartal in de twee descriptions bovenaan" \
               "- [ ] \`index.html\`: de kaart \"Binnenkort: Open Monumentendag\" onder \"Nu bij de toren\"" \
               "- [ ] \"Laatst bijgewerkt\" en \`dateModified\` op de activiteitenpagina" \
               "" \
