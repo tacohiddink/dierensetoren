@@ -56,10 +56,12 @@ De datum en tijden staan op acht plekken. Pas ze allemaal aan:
 4. `index.html`, bovenaan tussen `<script type="application/ld+json">`: dezelfde tekst bij `"Kan ik de Dierense Toren beklimmen?"`.
 5. `llms.txt`: de regel die begint met "Bezoek:".
 6. `downloads/open-monumentendag-dierense-toren.ics` (het agenda-item achter de knop "Zet in je agenda"): `UID` (jaartal), `DTSTART` en `DTEND` in de vorm `20270912T110000` (jaar-maand-dag, T, uur-minuut-seconde), en `DTSTAMP` (de datum van vandaag).
-7. `en.html`: de zin "Heritage Day 2027: …" met de datum en de openingstijden in het Engels.
+7. `en.html`: de zin "Heritage Day 2027: …" met de datum en de openingstijden in het Engels, en bovenaan het jaartal in de twee descriptions (`name="description"` en `og:description`).
 8. `index.html`: de kaart "Binnenkort: Open Monumentendag" onder "Nu bij de toren". Kijk daar meteen of de andere twee kaarten nog actueel zijn.
 
 Zet daarna de datum bij **Laatst bijgewerkt** goed (zie hieronder).
+
+De automatische controle bij een pull request helpt: die faalt als Open Monumentendag in de structured data al voorbij is, als een van de plekken hierboven een ander jaar noemt, of als het agenda-item een andere datum heeft.
 
 ### ANBI-verslag en financiële cijfers (begin van het jaar)
 
@@ -77,6 +79,8 @@ Na een inhoudelijke wijziging op de ANBI- of activiteitenpagina pas je de datum 
 - onderaan de pagina: `<time datetime="2026-11-16">16 november 2026</time>` (beide datums);
 - bovenaan de pagina bij `"dateModified": "2026-11-16"`;
 - onderaan `llms.txt`: "Laatst bijgewerkt: …".
+
+De datums in `sitemap.xml` hoef je niet bij te werken: die worden bij het publiceren automatisch uit de laatste wijziging van elke pagina gehaald.
 
 ## Brochure (PDF) bijwerken
 
@@ -119,7 +123,7 @@ Controleer daarna of het werkblad nog op 4 pagina's past.
 
 Deze afspraken houden de site snel, vindbaar en privacyvriendelijk. Als je alleen tekst aanpast, hoef je er niets mee.
 
-- **`?v=dev` achter bestandsnamen** (bijvoorbeeld `css/site.css?v=dev`) laten staan. Bij het publiceren wordt dit automatisch vervangen door een versienummer, zodat bezoekers nooit een oude versie uit hun browsercache zien.
+- **`?v=dev` achter bestandsnamen** (bijvoorbeeld `css/site.css?v=dev`) laten staan. Bij het publiceren wordt dit per bestand vervangen door een versienummer dat uit de inhoud wordt berekend. Bezoekers zien zo nooit een oude versie uit hun browsercache, en foto's die niet veranderd zijn hoeven ze niet opnieuw te downloaden.
 - **Links naar andere websites** krijgen `target="_blank" rel="noopener"`, zodat ze in een nieuw tabblad openen.
 - **Geen externe diensten toevoegen** die cookies plaatsen of bezoekers volgen (zoals Google Analytics, YouTube-video's of social-mediaknoppen). Dan is een cookiebanner nodig en moet de privacyverklaring worden aangepast. De lettertypes staan daarom op de eigen site, en de Google-kaart laadt pas na een klik.
 - **Structured data** (de blokken `<script type="application/ld+json">`) beschrijft de toren, de stichting, de veelgestelde vragen en Open Monumentendag voor Google. Houd die gelijk met de zichtbare tekst.
