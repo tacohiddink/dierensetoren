@@ -34,7 +34,7 @@ for li in re.findall(r'<li class="tl-slide".*?</li>', s, re.S):
     })
 
 # Architect
-arch = re.search(r'<section class="section section--cream" id="architect">.*?<div class="prose">(.*?)</div>\s*</div>\s*</section>', s, re.S).group(1)
+arch = re.search(r'<section class="section[^"]*" id="architect">.*?<div class="prose">(.*?)</div>\s*</div>\s*</section>', s, re.S).group(1)
 arch = re.sub(r"\s*\n\s*", "\n", arch).strip()
 
 # In het kort
