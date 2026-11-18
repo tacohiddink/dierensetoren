@@ -7,8 +7,9 @@ Fouten (laten de controle falen):
 - externe links zonder target="_blank" rel="noopener"
 - ongeldige structured data (JSON-LD), sitemap of og:image
 - achtergebleven "?v=dev"
-- Open Monumentendag die voorbij is, of die niet overal hetzelfde jaar en dezelfde
-  datum heeft (pagina's, llms.txt, structured data en het agenda-item)
+- Open Monumentendag die voorbij is, of die niet overal hetzelfde jaar, dezelfde datum,
+  dezelfde weekdag en dezelfde openingstijden heeft (pagina's, llms.txt, structured data
+  en het agenda-item)
 
 Waarschuwingen (falen niet): externe links die niet bereikbaar lijken.
 
@@ -195,6 +196,38 @@ if act.exists():
                     if j != jaar and (j, stuk[:60]) not in gemeld:
                         gemeld.add((j, stuk[:60]))
                         error(naam, f"Open Monumentendag noemt {j}, maar de structured data noemt {jaar}: {stuk[:90]}")
+        # dag, maand en openingstijden moeten overeenkomen met startDate en endDate
+        dagen_nl = ["maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag", "zondag"]
+        dagen_en = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+        maanden_nl = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"]
+        maanden_en = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        d = date.fromisoformat(start[:10])
+        eind = event.get("endDate", "")
+        u1, u2 = int(start[11:13]), int(eind[11:13]) if eind else None
+        uur_en = lambda u: f"{u % 12 or 12} {'am' if u < 12 else 'pm'}"
+        verwacht = {
+            "index.html": [f"{dagen_nl[d.weekday()]} {d.day} {maanden_nl[d.month - 1]}", f"{u1:02d}.{start[14:16]} tot {u2:02d}.{eind[14:16]}"],
+            "activiteiten.html": [f"{dagen_nl[d.weekday()]} {d.day} {maanden_nl[d.month - 1]}", f"{u1:02d}.{start[14:16]} tot {u2:02d}.{eind[14:16]}"],
+            "en.html": [f"{dagen_en[d.weekday()]} {d.day} {maanden_en[d.month - 1]}", f"{uur_en(u1)} to {uur_en(u2)}"],
+            "llms.txt": [f"{d.day} {maanden_nl[d.month - 1]}"],
+        }
+        for naam, stukken in verwacht.items():
+            bestand = root / naam
+            if not bestand.exists():
+                continue
+            tekst = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", bestand.read_text(encoding="utf-8").replace("&nbsp;", " ")))
+            for s in stukken:
+                if s not in tekst:
+                    error(naam, f'Open Monumentendag: "{s}" (uit de structured data) staat niet op de pagina')
+            # een weekdag die niet bij de datum past, zoals "zaterdag 12 september"
+            for wd, dag, mnd in re.findall(r"\b(%s) (\d{1,2}) (%s)\b" % ("|".join(dagen_nl + dagen_en), "|".join(maanden_nl + maanden_en)), tekst):
+                maand = (maanden_nl.index(mnd) if mnd in maanden_nl else maanden_en.index(mnd)) + 1
+                try:
+                    echt = date(d.year, maand, int(dag)).weekday()
+                except ValueError:
+                    continue
+                if (dagen_nl + dagen_en).index(wd) % 7 != echt:
+                    error(naam, f'"{wd} {dag} {mnd}" klopt niet: {dag} {mnd} {d.year} is een {dagen_nl[echt]}')
         ics = root / "downloads" / "open-monumentendag-dierense-toren.ics"
         if ics.exists():
             inhoud = ics.read_text(encoding="utf-8")
