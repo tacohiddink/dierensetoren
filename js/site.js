@@ -86,19 +86,23 @@
   dlg.className = 'lightbox';
   dlg.setAttribute('aria-label', 'Vergrote foto');
   dlg.innerHTML =
-    '<figure><img alt=""><figcaption></figcaption></figure>' +
+    '<figure><picture><source type="image/avif"><img alt=""></picture><figcaption></figcaption></figure>' +
     '<button class="lb-close" type="button" aria-label="Sluiten">' + icon('M18 6 6 18M6 6l12 12') + '</button>' +
     '<button class="lb-prev" type="button" aria-label="Vorige foto">' + icon('m15 18-6-6 6-6') + '</button>' +
     '<button class="lb-next" type="button" aria-label="Volgende foto">' + icon('m9 18 6-6-6-6') + '</button>';
   document.body.appendChild(dlg);
   var img = dlg.querySelector('img');
+  var avif = dlg.querySelector('source');
   var cap = dlg.querySelector('figcaption');
   var current = 0;
 
   function show(i) {
     current = (i + links.length) % links.length;
     var thumb = links[current].querySelector('img');
-    img.src = links[current].getAttribute('href');
+    var groot = links[current].getAttribute('href');
+    // AVIF is veel kleiner; de JPG blijft de terugval voor oudere browsers
+    avif.srcset = groot.replace(/\.jpg(\?|$)/, '.avif$1');
+    img.src = groot;
     img.alt = thumb.alt;
     cap.textContent = thumb.alt + ' (' + (current + 1) + ' / ' + links.length + ')';
   }

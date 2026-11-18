@@ -2,7 +2,8 @@
 # Stelt de site samen in _site en vervangt elke "?v=dev" door een versienummer
 # dat per bestand uit de inhoud wordt berekend. Zo halen browsers een gewijzigd
 # bestand direct opnieuw op, terwijl ongewijzigde foto's in de cache blijven.
-# De <lastmod> in sitemap.xml komt uit de laatste commit van elke pagina.
+# De <lastmod> in sitemap.xml, "dateModified" en "Laatst bijgewerkt" op de pagina's
+# en de datum onderaan llms.txt komen uit de laatste commit van elk bestand.
 # Gebruik: .github/scripts/bouw.sh <versie>
 #   <versie> wordt alleen gebruikt voor verwijzingen naar bestanden die niet bestaan.
 set -euo pipefail
@@ -56,6 +57,24 @@ def lastmod(m):
     datum = laatste_commit(bron)
     return m.group(0) if not datum else f"<loc>{loc}</loc><lastmod>{datum}</lastmod>"
 sitemap.write_text(re.sub(r"<loc>([^<]+)</loc><lastmod>[^<]+</lastmod>", lastmod, sitemap.read_text(encoding="utf-8")), encoding="utf-8")
+
+# "dateModified" en "Laatst bijgewerkt" op elke pagina, en onderaan llms.txt, ook uit git
+MAANDEN = ["januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"]
+def leesbaar(datum):
+    j, m, d = datum.split("-")
+    return f"{int(d)} {MAANDEN[int(m) - 1]} {j}"
+for f in root.glob("*.html"):
+    datum = laatste_commit(f.name)
+    if not datum:
+        continue
+    tekst = f.read_text(encoding="utf-8")
+    tekst = re.sub(r'"dateModified": "\d{4}-\d{2}-\d{2}"', f'"dateModified": "{datum}"', tekst)
+    tekst = re.sub(r'(Laatst bijgewerkt: )<time datetime="\d{4}-\d{2}-\d{2}">[^<]*</time>', lambda m: f'{m.group(1)}<time datetime="{datum}">{leesbaar(datum)}</time>', tekst)
+    f.write_text(tekst, encoding="utf-8")
+llms = root / "llms.txt"
+datum = laatste_commit(".")
+if llms.exists() and datum:
+    llms.write_text(re.sub(r"Laatst bijgewerkt: .*", f"Laatst bijgewerkt: {leesbaar(datum)}", llms.read_text(encoding="utf-8")), encoding="utf-8")
 EOF
 
 if grep -rl '?v=dev' _site --include='*.html' --include='*.css'; then

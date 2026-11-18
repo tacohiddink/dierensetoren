@@ -58,9 +58,7 @@ De datum en tijden staan op acht plekken. Pas ze allemaal aan:
 5. `llms.txt`: de regel die begint met "Bezoek:".
 6. `downloads/open-monumentendag-dierense-toren.ics` (het agenda-item achter de knop "Zet in je agenda"): `UID` (jaartal), `DTSTART` en `DTEND` in de vorm `20270912T110000` (jaar-maand-dag, T, uur-minuut-seconde), en `DTSTAMP` (de datum van vandaag).
 7. `en.html`: de zin "Heritage Day 2027: …" met de datum en de openingstijden in het Engels, en bovenaan het jaartal in de twee descriptions (`name="description"` en `og:description`).
-8. `index.html`: de kaart "Binnenkort: Open Monumentendag" onder "Nu bij de toren". Kijk daar meteen of de andere twee kaarten nog actueel zijn.
-
-Zet daarna de datum bij **Laatst bijgewerkt** goed (zie hieronder).
+8. `index.html`: de kaart "Noteer alvast: Open Monumentendag" onder "Nu bij de toren". Kijk daar meteen of de andere twee kaarten nog actueel zijn.
 
 De automatische controle helpt: die faalt als Open Monumentendag in de structured data al voorbij is, of als een van de plekken hierboven een ander jaar, een andere datum, een verkeerde weekdag of andere openingstijden noemt dan de structured data, of als het agenda-item een andere datum heeft. De controle draait bij elke pull request en daarnaast elke maandag (`.github/workflows/wekelijkse-controle.yml`); bij een fout stuurt GitHub een e-mail.
 
@@ -71,17 +69,15 @@ Een culturele ANBI moet deze gegevens actueel op de website hebben.
 1. `anbistatus.html`, onder "Verslag van de activiteiten in …": pas het jaartal en de tekst aan.
 2. `anbistatus.html`, de tabel onder "Financiële verantwoording": vervang de oudste kolom door het nieuwe jaar. De kolommen staan in de regel met `<thead>`; elke rij heeft per jaar één `<td>`.
 3. `anbistatus.html`: controleer de lijst met bestuursleden.
-4. Zet de datum bij **Laatst bijgewerkt** goed.
 
 ### Laatst bijgewerkt
 
-Na een inhoudelijke wijziging op de ANBI- of activiteitenpagina pas je de datum op drie plekken aan:
+Datums hoef je niet bij te werken. Bij het publiceren worden ze automatisch uit de laatste wijziging van elk bestand gehaald:
 
-- onderaan de pagina: `<time datetime="2026-11-16">16 november 2026</time>` (beide datums);
-- bovenaan de pagina bij `"dateModified": "2026-11-16"`;
-- onderaan `llms.txt`: "Laatst bijgewerkt: …".
-
-De datums in `sitemap.xml` hoef je niet bij te werken: die worden bij het publiceren automatisch uit de laatste wijziging van elke pagina gehaald.
+- "Laatst bijgewerkt" onderaan de ANBI- en activiteitenpagina;
+- `"dateModified"` in de structured data;
+- "Laatst bijgewerkt" onderaan `llms.txt`;
+- de datums in `sitemap.xml`.
 
 ## Brochure (PDF) bijwerken
 
