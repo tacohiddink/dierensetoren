@@ -62,7 +62,7 @@ De datum en tijden staan op acht plekken. Pas ze allemaal aan:
 
 Zet daarna de datum bij **Laatst bijgewerkt** goed (zie hieronder).
 
-De automatische controle bij een pull request helpt: die faalt als Open Monumentendag in de structured data al voorbij is, als een van de plekken hierboven een ander jaar noemt, of als het agenda-item een andere datum heeft.
+De automatische controle helpt: die faalt als Open Monumentendag in de structured data al voorbij is, of als een van de plekken hierboven een ander jaar, een andere datum, een verkeerde weekdag of andere openingstijden noemt dan de structured data, of als het agenda-item een andere datum heeft. De controle draait bij elke pull request.
 
 ### ANBI-verslag en financiële cijfers (begin van het jaar)
 
