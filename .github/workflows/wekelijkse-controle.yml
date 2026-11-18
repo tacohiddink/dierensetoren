@@ -1,0 +1,24 @@
+# Draait elke maandag de controle van de site, ook als er niets is gewijzigd.
+# Zo valt het op als de datum van Open Monumentendag voorbij is of als een
+# verwijzing stuk is gegaan. Bij een fout krijgt de eigenaar van de repository
+# een e-mail van GitHub. Zie .github/scripts/controle.py.
+name: Wekelijkse controle
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"  # elke maandag om 06.00 uur (UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  controle:
+    name: Links, bestanden en Open Monumentendag
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Site samenstellen
+        run: .github/scripts/bouw.sh controle
+      - name: Controleren
+        run: python3 .github/scripts/controle.py _site
