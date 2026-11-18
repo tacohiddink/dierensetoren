@@ -5,7 +5,7 @@ Fouten (laten de controle falen):
 - links naar een #anker dat niet op de pagina staat
 - afbeeldingen zonder alt, width of height
 - externe links zonder target="_blank" rel="noopener"
-- ongeldige structured data (JSON-LD), sitemap of og:image
+- ongeldige structured data (JSON-LD), sitemap (pagina's en foto's) of og:image
 - achtergebleven "?v=dev"
 - Open Monumentendag die voorbij is, of die niet overal hetzelfde jaar, dezelfde datum,
   dezelfde weekdag en dezelfde openingstijden heeft (pagina's, llms.txt, structured data
@@ -146,6 +146,11 @@ if sitemap.exists():
             t = local_target(loc.text.strip(), root / "index.html")
             if t is None or not t[0].exists():
                 error("sitemap.xml", f"pagina bestaat niet: {loc.text}")
+        ns["image"] = "http://www.google.com/schemas/sitemap-image/1.1"
+        for loc in ET.parse(sitemap).getroot().findall("s:url/image:image/image:loc", ns):
+            t = local_target(loc.text.strip(), root / "index.html")
+            if t is None or not t[0].exists():
+                error("sitemap.xml", f"foto bestaat niet: {loc.text}")
     except ET.ParseError as e:
         error("sitemap.xml", f"ongeldige XML: {e}")
 
