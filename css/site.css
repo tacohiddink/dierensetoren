@@ -38,6 +38,9 @@ picture:not(.hero__bg) { display: contents; } /* <picture> rond foto's verandert
 picture > source { display: none; } /* anders telt <source> als eigen vak in grids zoals .split */
 a { color: var(--brick); text-underline-offset: 3px; }
 a:hover { color: var(--brick-dark); }
+/* Focusrand bij navigeren met het toetsenbord; wit op donkere achtergronden */
+:focus-visible { outline: 3px solid var(--brick); outline-offset: 2px; }
+.hero :focus-visible, .cta :focus-visible, .panel--accent :focus-visible, .site-footer :focus-visible { outline-color: var(--white); }
 h1, h2, h3 { font-family: var(--serif); line-height: 1.15; font-weight: 600; letter-spacing: -.01em; margin: 0 0 .5em; }
 h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); }
 h2 { font-size: clamp(1.6rem, 3.6vw, 2.3rem); }
@@ -190,7 +193,7 @@ figcaption { font-size: .88rem; color: var(--ink-soft); margin-top: 8px; }
 .tl-years a[aria-current="true"] { background: var(--brick); color: var(--white); }
 .tl-track { order: 2; align-items: flex-start; list-style: none; margin: 0; padding: 0; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; }
 .tl-track::-webkit-scrollbar { display: none; }
-.tl-track:focus-visible { outline: 3px solid var(--gold); outline-offset: -3px; }
+.tl-track:focus-visible { outline: 3px solid var(--brick); outline-offset: -3px; }
 .tl-slide { flex: 0 0 100%; scroll-snap-align: start; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 32px; padding: 32px; align-items: start; }
 .tl-slide figure { margin: 0; }
 .tl-slide img { width: 100%; max-height: 460px; object-fit: contain; background: var(--cream); border-radius: 10px; }
@@ -219,7 +222,7 @@ figcaption { font-size: .88rem; color: var(--ink-soft); margin-top: 8px; }
 .gallery a { display: block; border-radius: 10px; overflow: hidden; cursor: zoom-in; }
 .gallery a img { transition: transform .25s ease; }
 .gallery a:hover img { transform: scale(1.04); }
-.gallery a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.gallery a:focus-visible { outline: 3px solid var(--brick); outline-offset: 3px; }
 
 /* Vergrote foto */
 .lightbox { max-width: none; max-height: none; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; background: transparent; }
@@ -230,7 +233,7 @@ figcaption { font-size: .88rem; color: var(--ink-soft); margin-top: 8px; }
 .lightbox figcaption { margin-top: 12px; color: rgba(255, 255, 255, .85); font-size: .95rem; text-align: center; }
 .lightbox button { position: absolute; display: grid; place-items: center; width: 48px; height: 48px; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .12); color: var(--white); cursor: pointer; }
 .lightbox button:hover { background: rgba(255, 255, 255, .24); }
-.lightbox button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+.lightbox button:focus-visible { outline: 3px solid var(--white); outline-offset: 2px; }
 .lightbox button svg { width: 24px; height: 24px; }
 .lightbox .lb-close { top: 16px; right: 16px; }
 .lightbox .lb-prev { left: 16px; top: 50%; transform: translateY(-50%); }
@@ -280,7 +283,7 @@ dl.defs dd { margin: 0; color: #2c3036; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after { content: ""; position: absolute; right: 22px; top: 50%; width: 9px; height: 9px; border-right: 2px solid var(--brick); border-bottom: 2px solid var(--brick); transform: translateY(-70%) rotate(45deg); transition: transform .2s; }
 .faq details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
-.faq summary:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 10px; }
+.faq summary:focus-visible { outline: 3px solid var(--brick); outline-offset: 2px; border-radius: 10px; }
 .faq details p { margin: 0; padding: 0 20px 18px; color: var(--ink-soft); }
 .faq .video-text { margin: 0; padding: 0 20px 18px 40px; color: var(--ink-soft); display: grid; gap: 6px; }
 
@@ -351,3 +354,31 @@ dl.defs dd { margin: 0; color: #2c3036; }
 .downloads li { position: relative; padding-left: 30px; }
 .downloads li::before { content: ""; position: absolute; left: 0; top: .15em; width: 20px; height: 20px; background: var(--brick); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v12m0 0-5-5m5 5 5-5M4 21h16'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v12m0 0-5-5m5 5 5-5M4 21h16'/%3E%3C/svg%3E") center / contain no-repeat; }
 .downloads span { display: block; font-size: .85rem; color: var(--ink-soft); }
+
+/* Minder beweging: geen soepel scrollen en animaties als de bezoeker dat heeft ingesteld */
+@media (prefers-reduced-motion: reduce) {
+  html, .tl-track { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+}
+
+/* Printen: alleen de inhoud, zonder menu, knoppen, kaart en video */
+@media print {
+  body { background: var(--white); font-size: 11pt; }
+  .site-header, .skip, .menu-toggle, .site-footer, .cta, .btn, .btn-row, .tl-years, .tl-controls, .lightbox, .map-consent, .embed, .video { display: none !important; }
+  .section, .page-head { padding: 16pt 0; background: none; border: 0; }
+  .hero { min-height: 0; color: var(--ink); background: none; }
+  .hero__bg, .hero::before { display: none; }
+  .hero .wrap { padding: 0; }
+  .hero h1, .hero p, .hero .eyebrow { color: var(--ink); text-shadow: none; }
+  .panel--accent { background: none; color: var(--ink); border: 1px solid var(--line); }
+  .panel--accent h2, .panel--accent h3, .panel--accent p { color: var(--ink); }
+  .card, .panel, .tl, .facts { box-shadow: none; }
+  .facts { margin-top: 0; }
+  details::details-content { content-visibility: visible; } /* uitklapteksten meeprinten */
+  .tl-track { display: block; overflow: visible; }
+  .gallery { grid-template-columns: repeat(3, 1fr); }
+  .tl-slide { padding: 12pt 0; break-inside: avoid; }
+  img, figure, .card { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+  .prose a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .85em; color: var(--ink-soft); word-break: break-all; }
+}
