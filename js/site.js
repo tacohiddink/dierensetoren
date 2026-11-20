@@ -27,6 +27,7 @@
   var next = tl.querySelector('.tl-next');
   var count = tl.querySelector('.tl-count');
   var current = 0;
+  var rustig = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function go(i) {
     i = Math.max(0, Math.min(slides.length - 1, i));
@@ -41,7 +42,7 @@
         a.setAttribute('aria-current', 'true');
         var bar = a.closest('.tl-years');
         var r = a.getBoundingClientRect(), b = bar.getBoundingClientRect();
-        bar.scrollTo({ left: bar.scrollLeft + r.left - b.left - (b.width - r.width) / 2, behavior: 'smooth' });
+        bar.scrollTo({ left: bar.scrollLeft + r.left - b.left - (b.width - r.width) / 2, behavior: rustig ? 'auto' : 'smooth' });
       } else {
         a.removeAttribute('aria-current');
       }
@@ -142,5 +143,18 @@
     box.appendChild(frame);
     box.classList.add('is-loaded');
     frame.focus();
+  });
+})();
+
+// Bij printen alle uitklapvragen openen, en daarna weer dichtdoen
+(function () {
+  var dicht = [];
+  window.addEventListener('beforeprint', function () {
+    dicht = Array.prototype.slice.call(document.querySelectorAll('details:not([open])'));
+    dicht.forEach(function (d) { d.open = true; });
+  });
+  window.addEventListener('afterprint', function () {
+    dicht.forEach(function (d) { d.open = false; });
+    dicht = [];
   });
 })();
